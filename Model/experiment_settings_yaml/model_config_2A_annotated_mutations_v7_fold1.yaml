@@ -1,0 +1,92 @@
+# model hyperparams
+model_hyperparams:
+  sample_id: 2
+  input_data_type: "transformer_inputs" # can also take values "annotated_mutations"
+  seed: 0 # torch, np, random seed
+  device: 0
+  model_save_criteria: "val_corr" # maximum value for val_corr
+  experiment_id: "2A" # 
+  experiment_settings: "ALL" # 
+  cl_corr_weight: 0.1 # weight for cell line correlation coefficient
+  patient_corr_weight: 0.9 # wieght for patient correlation coefficient
+  feature_num: 797 # can be 7776 for input_data_type = "annotated_mutations"
+  cl_pretrain_lr: 1.0e-3
+  patient_pretrain_lr: 1.0e-3
+  pretrain_lr: 1.0e-4
+  pretrain_convergence_threshold: 1.0e-4
+  pretrain_weight_decay: 1.0e-4
+  cl_pretrain_epochs: 500
+  patient_pretrain_epochs: 500
+  pretrain_epochs: 500
+  eps: 1.0e-10
+  ridge_lambda: 0.5
+  dropout: 0.1
+  source_batch_size: 32
+  target_batch_size: 32
+  cl_vae_k_list:
+    - 1024
+    - 128
+  cl_vae_actf_list:
+    - "tanh"
+    - "tanh"
+  patient_vae_k_list:
+    - 512
+    - 128
+  patient_vae_actf_list:
+    - "tanh"
+    - "relu"
+  baseline_model_hidden_dim_list:
+    - 1024
+    - 128
+    - 64
+  baseline_patient_lr: 1.0e-5
+  baseline_patient_epochs: 100
+  pseudolabel_lower_threshold: 0.1 # unused
+  pseudolabel_upper_threshold: 0.5 # unused
+  drp_hidden_dim: 256
+  drp_lr: 1.0e-3 # 1.0e-4 for sample 1, 1.0e-3 for current best 0, 2
+  drp_epochs: 100
+  drp_batch_size: 512
+
+# best model details
+best_model_hyperparams:
+  best_wandb_run_name: "" # fill this in with the best wandb run name for the experiment id and setting, after model tuning is done.
+
+# folders used
+folder_config:
+  model_checkpoint_folder: "" # used to save trained model
+  model_inference_folder: "" # used to save predictions made on test data
+  data_folder: "" # folder where pickle files are available for direct loading.
+
+# wandb config details
+wandb_config:
+  username: "user@gmail.com" # replace this
+  api_key: "XXXX" # replace this
+  project_name: "GANDALF_train_annotated_mutations"
+  wandb_cache_dir: "/data/wandb_cache"
+
+# wandb sweep config based on https://docs.wandb.ai/guides/sweeps/add-w-and-b-to-your-code
+wandb_sweep:
+  method: "bayes"
+  name: "GANDALF_train_sweep_annotated_mutations"
+  metric:
+    goal: "maximize" # since we are maximising val AUROC/AUPRC and minimizing val_loss
+    name: "validation_score"  # must match the name used in wandb log
+  parameters:
+    drp_lr: 
+      max: 0.05
+      min: 1.0e-6
+    baseline_patient_lr:
+      max: 0.01
+      min: 1.0e-6
+    pseudolabel_lower_threshold:
+      max: 0.5
+      min: 0.1
+    pseudolabel_upper_threshold:
+      max: 0.9
+      min: 0.5
+  early_terminate: # only for non-random sweeps
+      type: hyperband
+      s: 2
+      eta: 3
+      max_iter: 27
