@@ -18,7 +18,7 @@ def evaluate_cell_lines(input_file):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("evaluation")
-    parser.add_argument('--save_dir', dest="save_dir", default="/data/ajayago/papers_data/DiffDRP/run_files")
+    parser.add_argument('--save_dir', dest="save_dir", default="/data//papers_data/DiffDRP/run_files")
     parser.add_argument("--checkpoint", dest="checkpoint", default="saved_model")
     parser.add_argument("--model_save_criteria", dest="model_save_criteria", default="val_corr")
     parser.add_argument("--experiment_id", dest="experiment_id", default="1A", choices=["1A", "1B", "2A", "2B"])

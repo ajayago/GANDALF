@@ -20,8 +20,8 @@ with open(path + "raw_data/gene_aliases.json", "r") as fp:
     gene_aliases = json.load(fp)
 
 # All annotations available so far
-annotation_dict = pd.read_pickle(r'/data/ajayago/druid/data/processed/annotation_dict_vocab_ccle_geniecrc_nsclc_tcga_nuhcrc_mskimpact.pkl')
-annotation_values_df = pd.read_csv("/data/ajayago/druid/data/processed/vocab_ccle_geniecrc_nsclc_tcga_nuhcrc_mskimpact.csv")
+annotation_dict = pd.read_pickle(r'/data//druid/data/processed/annotation_dict_vocab_ccle_geniecrc_nsclc_tcga_nuhcrc_mskimpact.pkl')
+annotation_values_df = pd.read_csv("/data//druid/data/processed/vocab_ccle_geniecrc_nsclc_tcga_nuhcrc_mskimpact.csv")
 annotation_values_df.drop(["point_mutation"], axis = 1, inplace=True)
 annotation_values_df.set_index("point_mutation_modified", drop=True, inplace=True)
 

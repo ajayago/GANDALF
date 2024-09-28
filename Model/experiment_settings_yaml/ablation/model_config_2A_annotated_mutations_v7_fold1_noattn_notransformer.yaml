@@ -58,16 +58,16 @@ best_model_hyperparams:
 
 # folders used
 folder_config:
-  model_checkpoint_folder: "/data/ajayago/papers_data/DiffDRP_v7/run_files/saved_model_annotated_mutations/ablation/ablation_noattn_notransformer/" # used to save trained model
-  model_inference_folder: "/data/ajayago/papers_data/DiffDRP_v7/run_files/saved_model_annotated_mutations/ablation/ablation_noattn_notransformer/" # used to save predictions made on test data
-  data_folder: "/data/ajayago/papers_data/systematic_assessment/" # folder where pickle files are available for direct loading.
+  model_checkpoint_folder: "/data//papers_data/DiffDRP_v7/run_files/saved_model_annotated_mutations/ablation/ablation_noattn_notransformer/" # used to save trained model
+  model_inference_folder: "/data//papers_data/DiffDRP_v7/run_files/saved_model_annotated_mutations/ablation/ablation_noattn_notransformer/" # used to save predictions made on test data
+  data_folder: "/data//papers_data/systematic_assessment/" # folder where pickle files are available for direct loading.
 
 # wandb config details
 wandb_config:
   username: "user@gmail.com" # replace this
-  api_key: "f3df1957778dfeb24d94798ed39a653c93ffbe1e" # replace this
+  api_key: "XXX" # replace this
   project_name: "DiffDRP_v7_train_annotated_mutations"
-  wandb_cache_dir: "/data/ajayago/wandb_cache"
+  wandb_cache_dir: "/data//wandb_cache"
 
 # wandb sweep config based on https://docs.wandb.ai/guides/sweeps/add-w-and-b-to-your-code
 wandb_sweep:
