@@ -1,4 +1,4 @@
-name: systematic_assessment
+name: gandalf
 channels:
   - pyg
   - pytorch
@@ -361,4 +361,4 @@ dependencies:
     - xarray==2023.6.0
     - xyzservices==2022.9.0
     - yarl==1.9.3
-prefix: /home/ajayago/anaconda3/envs/systematic_assessment
+prefix: /home/ajayago/anaconda3/envs/gandalf
